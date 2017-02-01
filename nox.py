@@ -21,10 +21,12 @@ install_commands = (
     ('python', 'setup.py', 'develop'))
 
 
+@nox.parametrize('interpreter', ('python2', 'python3'))
 @nox.parametrize('command_a', install_commands)
 @nox.parametrize('command_b', install_commands)
-def session_verify(session, command_a, command_b):
-    session.interpreter = 'python3'
+def session_verify(session, interpreter, command_a, command_b):
+    session.interpreter = interpreter
+    session.install('setuptools', 'pip')
     session.chdir('example_pkg_a')
     session.run('rm', '-rf', 'dist', 'build', 'example_pkg_a.egg-info')
     session.run(*command_a)
