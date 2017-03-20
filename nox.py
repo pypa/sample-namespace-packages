@@ -37,7 +37,7 @@ def install_packages(session, package_a, package_b, command_a, command_b):
 @nox.parametrize('command_b', install_commands)
 def session_non_pep420(session, interpreter, command_a, command_b):
     session.interpreter = interpreter
-    session.install('setuptools', 'pip')
+    session.install('--upgrade', 'setuptools', 'pip')
     install_packages(
         session, 'example_pkg_a', 'example_pkg_b', command_a, command_b)
     session.run('python', 'verify_packages.py')
@@ -48,7 +48,7 @@ def session_non_pep420(session, interpreter, command_a, command_b):
 @nox.parametrize('command_b', install_commands)
 def session_pep420(session, interpreter, command_a, command_b):
     session.interpreter = interpreter
-    session.install('setuptools', 'pip')
+    session.install('--upgrade', 'setuptools', 'pip')
     install_packages(
         session, 'pep420_example_pkg_a', 'pep420_example_pkg_b',
         command_a, command_b)
