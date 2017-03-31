@@ -29,5 +29,4 @@ setup(
     license='Apache Software License',
 
     packages=find_packages(),
-    namespace_packages=['example_pkg']
 )
