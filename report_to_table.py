@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 import io
 import json
 
@@ -14,5 +17,5 @@ with io.open('table.md', 'w') as f:
             session['args']['interpreter'],
             ' '.join(session['args']['command_a']),
             ' '.join(session['args']['command_b']),
-            'pass' if session['result'] else 'fail'
+            u'✅' if session['result'] else u'❌'
         ))

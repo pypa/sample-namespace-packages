@@ -35,11 +35,24 @@ def install_packages(session, package_a, package_b, command_a, command_b):
 @nox.parametrize('interpreter', ('python2', 'python3'))
 @nox.parametrize('command_a', install_commands)
 @nox.parametrize('command_b', install_commands)
-def session_non_pep420(session, interpreter, command_a, command_b):
+def session_pkgutil(session, interpreter, command_a, command_b):
     session.interpreter = interpreter
     session.install('--upgrade', 'setuptools', 'pip')
     install_packages(
-        session, 'example_pkg_a', 'example_pkg_b', command_a, command_b)
+        session, 'pkgutil_example_pkg_a', 'pkgutil_example_pkg_b',
+        command_a, command_b)
+    session.run('python', 'verify_packages.py')
+
+
+@nox.parametrize('interpreter', ('python2', 'python3'))
+@nox.parametrize('command_a', install_commands)
+@nox.parametrize('command_b', install_commands)
+def session_pkg_resources(session, interpreter, command_a, command_b):
+    session.interpreter = interpreter
+    session.install('--upgrade', 'setuptools', 'pip')
+    install_packages(
+        session, 'pkg_resources_example_pkg_a', 'pkg_resources_example_pkg_b',
+        command_a, command_b)
     session.run('python', 'verify_packages.py')
 
 
@@ -51,5 +64,18 @@ def session_pep420(session, interpreter, command_a, command_b):
     session.install('--upgrade', 'setuptools', 'pip')
     install_packages(
         session, 'pep420_example_pkg_a', 'pep420_example_pkg_b',
+        command_a, command_b)
+    session.run('python', 'verify_packages.py')
+
+
+@nox.parametrize('interpreter', ('python2', 'python3'))
+@nox.parametrize('command_a', install_commands)
+@nox.parametrize('command_b', install_commands)
+def session_cross_pkg_resources_pkgutil(
+        session, interpreter, command_a, command_b):
+    session.interpreter = interpreter
+    session.install('--upgrade', 'setuptools', 'pip')
+    install_packages(
+        session, 'pkg_resources_example_pkg_a', 'pkgutil_example_pkg_b',
         command_a, command_b)
     session.run('python', 'verify_packages.py')

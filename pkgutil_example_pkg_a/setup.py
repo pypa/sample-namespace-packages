@@ -12,11 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from setuptools import setup
+from setuptools import setup, find_packages
 
 
 setup(
-    name='example_pkg_b',
+    name='example_pkg_a',
 
     version='1',
 
@@ -28,5 +28,5 @@ setup(
 
     license='Apache Software License',
 
-    packages=['example_pkg.b'],
+    packages=find_packages(),
 )
