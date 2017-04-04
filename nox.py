@@ -79,3 +79,16 @@ def session_cross_pkg_resources_pkgutil(
         session, 'pkg_resources_example_pkg_a', 'pkgutil_example_pkg_b',
         command_a, command_b)
     session.run('python', 'verify_packages.py')
+
+
+@nox.parametrize('interpreter', ('python2', 'python3'))
+@nox.parametrize('command_a', install_commands)
+@nox.parametrize('command_b', install_commands)
+def session_cross_pep420_pkgutil(
+        session, interpreter, command_a, command_b):
+    session.interpreter = interpreter
+    session.install('--upgrade', 'setuptools', 'pip')
+    install_packages(
+        session, 'pep420_example_pkg_a', 'pkgutil_example_pkg_b',
+        command_a, command_b)
+    session.run('python', 'verify_packages.py')

@@ -1,5 +1,37 @@
 | Type | Interpreter | Package A command | Package B command | Status |
 | --- | --- | --- | --- | --- |
+| cross_pep420_pkgutil | python2 | pip install . | pip install . | ✅ |
+| cross_pep420_pkgutil | python2 | pip install . | pip install -e . | ❌ |
+| cross_pep420_pkgutil | python2 | pip install . | python setup.py install | ❌ |
+| cross_pep420_pkgutil | python2 | pip install . | python setup.py develop | ❌ |
+| cross_pep420_pkgutil | python2 | pip install -e . | pip install . | ❌ |
+| cross_pep420_pkgutil | python2 | pip install -e . | pip install -e . | ❌ |
+| cross_pep420_pkgutil | python2 | pip install -e . | python setup.py install | ❌ |
+| cross_pep420_pkgutil | python2 | pip install -e . | python setup.py develop | ❌ |
+| cross_pep420_pkgutil | python2 | python setup.py install | pip install . | ❌ |
+| cross_pep420_pkgutil | python2 | python setup.py install | pip install -e . | ❌ |
+| cross_pep420_pkgutil | python2 | python setup.py install | python setup.py install | ❌ |
+| cross_pep420_pkgutil | python2 | python setup.py install | python setup.py develop | ❌ |
+| cross_pep420_pkgutil | python2 | python setup.py develop | pip install . | ❌ |
+| cross_pep420_pkgutil | python2 | python setup.py develop | pip install -e . | ❌ |
+| cross_pep420_pkgutil | python2 | python setup.py develop | python setup.py install | ❌ |
+| cross_pep420_pkgutil | python2 | python setup.py develop | python setup.py develop | ❌ |
+| cross_pep420_pkgutil | python3 | pip install . | pip install . | ✅ |
+| cross_pep420_pkgutil | python3 | pip install . | pip install -e . | ✅ |
+| cross_pep420_pkgutil | python3 | pip install . | python setup.py install | ✅ |
+| cross_pep420_pkgutil | python3 | pip install . | python setup.py develop | ✅ |
+| cross_pep420_pkgutil | python3 | pip install -e . | pip install . | ✅ |
+| cross_pep420_pkgutil | python3 | pip install -e . | pip install -e . | ✅ |
+| cross_pep420_pkgutil | python3 | pip install -e . | python setup.py install | ✅ |
+| cross_pep420_pkgutil | python3 | pip install -e . | python setup.py develop | ✅ |
+| cross_pep420_pkgutil | python3 | python setup.py install | pip install . | ❌ |
+| cross_pep420_pkgutil | python3 | python setup.py install | pip install -e . | ❌ |
+| cross_pep420_pkgutil | python3 | python setup.py install | python setup.py install | ❌ |
+| cross_pep420_pkgutil | python3 | python setup.py install | python setup.py develop | ❌ |
+| cross_pep420_pkgutil | python3 | python setup.py develop | pip install . | ✅ |
+| cross_pep420_pkgutil | python3 | python setup.py develop | pip install -e . | ✅ |
+| cross_pep420_pkgutil | python3 | python setup.py develop | python setup.py install | ✅ |
+| cross_pep420_pkgutil | python3 | python setup.py develop | python setup.py develop | ✅ |
 | cross_pkg_resources_pkgutil | python2 | pip install . | pip install . | ✅ |
 | cross_pkg_resources_pkgutil | python2 | pip install . | pip install -e . | ❌ |
 | cross_pkg_resources_pkgutil | python2 | pip install . | python setup.py install | ❌ |
