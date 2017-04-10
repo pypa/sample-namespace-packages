@@ -1,6 +1,13 @@
-# Python Namespace Package Tests
+# Python Namespace Package Examples
 
-This repo exists to exercise installation scenarios for namespace packages.
+This repository contains samples for the various ways to create namespace
+packages in Pyhton. For more details, see the
+[documentation on namespace packages](https://packaging.python.org/namespace_packages/)
+
+
+## Testing
+This repo also contains testing tools to exercise installation scenarios for
+namespace packages.
 
 To run the scenarios:
 
@@ -16,4 +23,4 @@ markdown-friendly table.
 
 # Current status
 
-To see the status since the last time I updated this repo open [table.md](table.md).
+To see the status since the last time the scenarios were run open [table.md](table.md).
