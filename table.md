@@ -40,7 +40,7 @@
 | cross_pkg_resources_pkgutil | python2 | pip install -e . | pip install -e . | ❌ |
 | cross_pkg_resources_pkgutil | python2 | pip install -e . | python setup.py install | ❌ |
 | cross_pkg_resources_pkgutil | python2 | pip install -e . | python setup.py develop | ❌ |
-| cross_pkg_resources_pkgutil | python2 | python setup.py install | pip install . | ✅ |
+| cross_pkg_resources_pkgutil | python2 | python setup.py install | pip install . | ❌ |
 | cross_pkg_resources_pkgutil | python2 | python setup.py install | pip install -e . | ✅ |
 | cross_pkg_resources_pkgutil | python2 | python setup.py install | python setup.py install | ✅ |
 | cross_pkg_resources_pkgutil | python2 | python setup.py install | python setup.py develop | ✅ |
@@ -56,7 +56,7 @@
 | cross_pkg_resources_pkgutil | python3 | pip install -e . | pip install -e . | ❌ |
 | cross_pkg_resources_pkgutil | python3 | pip install -e . | python setup.py install | ❌ |
 | cross_pkg_resources_pkgutil | python3 | pip install -e . | python setup.py develop | ❌ |
-| cross_pkg_resources_pkgutil | python3 | python setup.py install | pip install . | ✅ |
+| cross_pkg_resources_pkgutil | python3 | python setup.py install | pip install . | ❌ |
 | cross_pkg_resources_pkgutil | python3 | python setup.py install | pip install -e . | ✅ |
 | cross_pkg_resources_pkgutil | python3 | python setup.py install | python setup.py install | ✅ |
 | cross_pkg_resources_pkgutil | python3 | python setup.py install | python setup.py develop | ✅ |

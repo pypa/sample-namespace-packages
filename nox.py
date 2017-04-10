@@ -12,7 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import os
+
 import nox
+
+HERE = os.path.abspath(os.path.dirname(__file__))
 
 install_commands = (
     ('pip', 'install', '.'),
@@ -23,13 +27,13 @@ install_commands = (
 
 def install_packages(session, package_a, package_b, command_a, command_b):
     session.chdir(package_a)
-    session.run('rm', '-rf', 'dist', 'build', 'example_pkg_a.egg-info')
+    session.run('rm', '-rf', 'dist', 'build', '*.egg-info')
     session.run(*command_a)
-    session.chdir('..')
+    session.chdir(HERE)
     session.chdir(package_b)
-    session.run('rm', '-rf', 'dist', 'build', 'example_pkg_b.egg-info')
+    session.run('rm', '-rf', 'dist', 'build', '*.egg-info')
     session.run(*command_b)
-    session.chdir('..')
+    session.chdir(HERE)
 
 
 @nox.parametrize('interpreter', ('python2', 'python3'))
@@ -39,7 +43,7 @@ def session_pkgutil(session, interpreter, command_a, command_b):
     session.interpreter = interpreter
     session.install('--upgrade', 'setuptools', 'pip')
     install_packages(
-        session, 'pkgutil_example_pkg_a', 'pkgutil_example_pkg_b',
+        session, 'pkgutil/pkg_a', 'pkgutil/pkg_b',
         command_a, command_b)
     session.run('python', 'verify_packages.py')
 
@@ -51,7 +55,7 @@ def session_pkg_resources(session, interpreter, command_a, command_b):
     session.interpreter = interpreter
     session.install('--upgrade', 'setuptools', 'pip')
     install_packages(
-        session, 'pkg_resources_example_pkg_a', 'pkg_resources_example_pkg_b',
+        session, 'pkg_resources/pkg_a', 'pkg_resources/pkg_b',
         command_a, command_b)
     session.run('python', 'verify_packages.py')
 
@@ -63,7 +67,7 @@ def session_pep420(session, interpreter, command_a, command_b):
     session.interpreter = interpreter
     session.install('--upgrade', 'setuptools', 'pip')
     install_packages(
-        session, 'pep420_example_pkg_a', 'pep420_example_pkg_b',
+        session, 'native/pkg_a', 'native/pkg_b',
         command_a, command_b)
     session.run('python', 'verify_packages.py')
 
@@ -76,7 +80,7 @@ def session_cross_pkg_resources_pkgutil(
     session.interpreter = interpreter
     session.install('--upgrade', 'setuptools', 'pip')
     install_packages(
-        session, 'pkg_resources_example_pkg_a', 'pkgutil_example_pkg_b',
+        session, 'pkg_resources/pkg_a', 'pkgutil/pkg_b',
         command_a, command_b)
     session.run('python', 'verify_packages.py')
 
@@ -89,6 +93,6 @@ def session_cross_pep420_pkgutil(
     session.interpreter = interpreter
     session.install('--upgrade', 'setuptools', 'pip')
     install_packages(
-        session, 'pep420_example_pkg_a', 'pkgutil_example_pkg_b',
+        session, 'native/pkg_a', 'pkgutil/pkg_b',
         command_a, command_b)
     session.run('python', 'verify_packages.py')
