@@ -1,7 +1,7 @@
 # Python Namespace Package Examples
 
 This repository contains samples for the various ways to create namespace
-packages in Pyhton. For more details, see the
+packages in Python. For more details, see the
 [documentation on namespace packages](https://packaging.python.org/namespace_packages/)
 
 
