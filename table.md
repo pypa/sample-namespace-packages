@@ -1,3 +1,10 @@
+| Tool | Version(s) |
+| --- | --- |
+| python | 2.7.12, 3.5.2 |
+| setuptools | 36.6.0 |
+| pip | 9.0.1 |
+| wheel | 0.30.0 |
+
 | Type | Interpreter | Package A command | Package B command | Status |
 | --- | --- | --- | --- | --- |
 | cross_pep420_pkgutil | python2 | pip install . | pip install . | ✅ |
