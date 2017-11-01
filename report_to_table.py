@@ -17,5 +17,5 @@ with io.open('table.md', 'w') as f:
             session['args']['interpreter'],
             ' '.join(session['args']['command_a']),
             ' '.join(session['args']['command_b']),
-            u'✅' if session['result'] else u'❌'
+            u'✅' if session['result_code'] else u'❌'
         ))
