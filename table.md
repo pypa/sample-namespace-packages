@@ -130,33 +130,33 @@
 | pkg_resources | python3 | python setup.py develop | python setup.py develop | ✅ |
 | pkgutil | python2 | pip install . | pip install . | ✅ |
 | pkgutil | python2 | pip install . | pip install -e . | ✅ |
-| pkgutil | python2 | pip install . | python setup.py install | ✅ |
+| pkgutil | python2 | pip install . | python setup.py install | ❌ |
 | pkgutil | python2 | pip install . | python setup.py develop | ✅ |
 | pkgutil | python2 | pip install -e . | pip install . | ✅ |
 | pkgutil | python2 | pip install -e . | pip install -e . | ✅ |
-| pkgutil | python2 | pip install -e . | python setup.py install | ✅ |
+| pkgutil | python2 | pip install -e . | python setup.py install | ❌ |
 | pkgutil | python2 | pip install -e . | python setup.py develop | ✅ |
-| pkgutil | python2 | python setup.py install | pip install . | ✅ |
+| pkgutil | python2 | python setup.py install | pip install . | ❌ |
 | pkgutil | python2 | python setup.py install | pip install -e . | ✅ |
-| pkgutil | python2 | python setup.py install | python setup.py install | ✅ |
+| pkgutil | python2 | python setup.py install | python setup.py install | ❌ |
 | pkgutil | python2 | python setup.py install | python setup.py develop | ✅ |
 | pkgutil | python2 | python setup.py develop | pip install . | ✅ |
 | pkgutil | python2 | python setup.py develop | pip install -e . | ✅ |
-| pkgutil | python2 | python setup.py develop | python setup.py install | ✅ |
+| pkgutil | python2 | python setup.py develop | python setup.py install | ❌ |
 | pkgutil | python2 | python setup.py develop | python setup.py develop | ✅ |
 | pkgutil | python3 | pip install . | pip install . | ✅ |
 | pkgutil | python3 | pip install . | pip install -e . | ✅ |
-| pkgutil | python3 | pip install . | python setup.py install | ✅ |
+| pkgutil | python3 | pip install . | python setup.py install | ❌ |
 | pkgutil | python3 | pip install . | python setup.py develop | ✅ |
 | pkgutil | python3 | pip install -e . | pip install . | ✅ |
 | pkgutil | python3 | pip install -e . | pip install -e . | ✅ |
-| pkgutil | python3 | pip install -e . | python setup.py install | ✅ |
+| pkgutil | python3 | pip install -e . | python setup.py install | ❌ |
 | pkgutil | python3 | pip install -e . | python setup.py develop | ✅ |
-| pkgutil | python3 | python setup.py install | pip install . | ✅ |
+| pkgutil | python3 | python setup.py install | pip install . | ❌ |
 | pkgutil | python3 | python setup.py install | pip install -e . | ✅ |
-| pkgutil | python3 | python setup.py install | python setup.py install | ✅ |
+| pkgutil | python3 | python setup.py install | python setup.py install | ❌ |
 | pkgutil | python3 | python setup.py install | python setup.py develop | ✅ |
 | pkgutil | python3 | python setup.py develop | pip install . | ✅ |
 | pkgutil | python3 | python setup.py develop | pip install -e . | ✅ |
-| pkgutil | python3 | python setup.py develop | python setup.py install | ✅ |
+| pkgutil | python3 | python setup.py develop | python setup.py install | ❌ |
 | pkgutil | python3 | python setup.py develop | python setup.py develop | ✅ |
