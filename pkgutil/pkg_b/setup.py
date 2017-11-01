@@ -29,4 +29,5 @@ setup(
     license='Apache Software License',
 
     packages=find_packages(),
+    zip_safe=False,
 )
