@@ -1,9 +1,9 @@
 | Tool | Version(s) |
 | --- | --- |
-| python | 2.7.12, 3.5.2 |
-| setuptools | 36.6.0 |
-| pip | 9.0.1 |
-| wheel | 0.30.0 |
+| python | 2.7.15, 3.6.5 |
+| setuptools | 39.1.0 |
+| pip | 10.0.1 |
+| wheel | 0.31.0 |
 
 | Type | Interpreter | Package A command | Package B command | Status |
 | --- | --- | --- | --- | --- |
