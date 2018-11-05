@@ -1,6 +1,6 @@
 # [pkgutil-style namespace packages](https://packaging.python.org/guides/packaging-namespace-packages/#pkgutil-style-namespace-packages)
 
-The following examples demonstrate the usage / installation of `pkgutil` style namespace packages. 
+The following examples demonstrates the usage / installation of `pkgutil` style namespace packages. 
 
 ```
 pkgutil/
