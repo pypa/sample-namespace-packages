@@ -1,0 +1,6 @@
+# -- PYTHON PACKAGE REQUIREMENTS:
+# USE: pip install -r <THIS_FILE>
+
+setuptools 
+virtualenv
+nox >= 2018.10.17

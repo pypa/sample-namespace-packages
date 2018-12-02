@@ -12,7 +12,7 @@ namespace packages.
 To run the scenarios:
 
 ```
-$ pip install --upgrade setuptools virtualenv nox-automation
+$ pip install --upgrade setuptools virtualenv nox
 $ nox --report report.json
 ```
 
