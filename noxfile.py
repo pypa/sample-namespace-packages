@@ -13,10 +13,17 @@
 # limitations under the License.
 
 import os
-
 import nox
 
 HERE = os.path.abspath(os.path.dirname(__file__))
+
+# -- REQUIRES: nox >= 2018.10.17
+# SEE: https://nox.readthedocs.io/en/stable/index.html
+USE_PYTHON_VERSIONS_DEFAULT = ["2.7", "3.7"]
+USE_PYTHON_VERSIONS = os.environ.get("NOXFILE_PYTHON_VERSIONS", "").split()
+if not USE_PYTHON_VERSIONS:
+    USE_PYTHON_VERSIONS = USE_PYTHON_VERSIONS_DEFAULT
+
 
 install_commands = (
     ('pip', 'install', '.'),
@@ -36,11 +43,10 @@ def install_packages(session, package_a, package_b, command_a, command_b):
     session.chdir(HERE)
 
 
-@nox.parametrize('interpreter', ('python2', 'python3'))
+@nox.session(python=USE_PYTHON_VERSIONS)
 @nox.parametrize('command_a', install_commands)
 @nox.parametrize('command_b', install_commands)
-def session_pkgutil(session, interpreter, command_a, command_b):
-    session.interpreter = interpreter
+def session_pkgutil(session, command_a, command_b):
     session.install('--upgrade', 'setuptools', 'pip')
     install_packages(
         session, 'pkgutil/pkg_a', 'pkgutil/pkg_b',
@@ -48,11 +54,10 @@ def session_pkgutil(session, interpreter, command_a, command_b):
     session.run('python', 'verify_packages.py')
 
 
-@nox.parametrize('interpreter', ('python2', 'python3'))
+@nox.session(python=USE_PYTHON_VERSIONS)
 @nox.parametrize('command_a', install_commands)
 @nox.parametrize('command_b', install_commands)
-def session_pkg_resources(session, interpreter, command_a, command_b):
-    session.interpreter = interpreter
+def session_pkg_resources(session, command_a, command_b):
     session.install('--upgrade', 'setuptools', 'pip')
     install_packages(
         session, 'pkg_resources/pkg_a', 'pkg_resources/pkg_b',
@@ -60,11 +65,10 @@ def session_pkg_resources(session, interpreter, command_a, command_b):
     session.run('python', 'verify_packages.py')
 
 
-@nox.parametrize('interpreter', ('python2', 'python3'))
+@nox.session(python=USE_PYTHON_VERSIONS)
 @nox.parametrize('command_a', install_commands)
 @nox.parametrize('command_b', install_commands)
-def session_pep420(session, interpreter, command_a, command_b):
-    session.interpreter = interpreter
+def session_pep420(session, command_a, command_b):
     session.install('--upgrade', 'setuptools', 'pip')
     install_packages(
         session, 'native/pkg_a', 'native/pkg_b',
@@ -72,12 +76,11 @@ def session_pep420(session, interpreter, command_a, command_b):
     session.run('python', 'verify_packages.py')
 
 
-@nox.parametrize('interpreter', ('python2', 'python3'))
+@nox.session(python=USE_PYTHON_VERSIONS)
 @nox.parametrize('command_a', install_commands)
 @nox.parametrize('command_b', install_commands)
 def session_cross_pkg_resources_pkgutil(
-        session, interpreter, command_a, command_b):
-    session.interpreter = interpreter
+        session, command_a, command_b):
     session.install('--upgrade', 'setuptools', 'pip')
     install_packages(
         session, 'pkg_resources/pkg_a', 'pkgutil/pkg_b',
@@ -85,12 +88,11 @@ def session_cross_pkg_resources_pkgutil(
     session.run('python', 'verify_packages.py')
 
 
-@nox.parametrize('interpreter', ('python2', 'python3'))
+@nox.session(python=USE_PYTHON_VERSIONS)
 @nox.parametrize('command_a', install_commands)
 @nox.parametrize('command_b', install_commands)
 def session_cross_pep420_pkgutil(
-        session, interpreter, command_a, command_b):
-    session.interpreter = interpreter
+        session, command_a, command_b):
     session.install('--upgrade', 'setuptools', 'pip')
     install_packages(
         session, 'native/pkg_a', 'pkgutil/pkg_b',
