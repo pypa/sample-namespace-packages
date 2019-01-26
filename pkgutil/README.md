@@ -21,7 +21,7 @@ The anatomy of a namespace package name is `<namespaceA>.<package_name>`.
 Namespaces can also be nested an take the form `<namespaceA>.<namespace_N>.<package_name>`.
 
 This subdirectory contains two packages (`"a"` & `"b"`) that share the namespace `example_pkg`.
-When installed these packages will have the names `example_pkg.a` & `example_pkg.a` respectively.
+When installed these packages will have the names `example_pkg.a` & `example_pkg.b` respectively.
 
 ### Detailed Requirements
 The directories `pkg_a` and `pkg_b` in this subdirectory contain two different python packages. 
