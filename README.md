@@ -37,7 +37,7 @@ Please note:
 It is difficult migrate away from deprecated `pkg_resources` namepaces in large projects.
 Ideally, all packages sharing a namespace should coordinate and simultaneously drop `__init__.py` files to conform with PEP 420.
 However, developers might be interested in carrying out a *staggered migration* plan and temporarily mix different namespacing techniques
-to reduce spread the migration effort and workload in time.
+to mitigate the migration effort and spread the work load in time.
 
 Based on the results for the scenarios mixing `pkg_resources` and other namespace methods reported in
 [table.md](table.md) and [legacy_table.md](legacy_table.md),
