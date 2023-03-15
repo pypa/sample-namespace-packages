@@ -32,7 +32,7 @@ Please note:
 * [PEP 420](https://www.python.org/dev/peps/pep-0420/) was accepted as part of Python 3.3. For wider compatibility (going back to Python 2.3), use the `pkgutil` method.
 * Zipped eggs don't play nicely with namespace packaging, and may be implicitly installed by commands like `python setup.py install`. To prevent this, it is recommended that you set [`zip_safe=False`](http://setuptools.readthedocs.io/en/latest/setuptools.html#setting-the-zip-safe-flag) in `setup.py`, as we do here. Please also note that distributing packages via egg files is also considered deprecated.
 
-# Remarks on how to migrate away from `pkg_resources`
+# Remarks on staggered migrations
 
 It is difficult migrate away from deprecated `pkg_resources` namepaces in large projects.
 Ideally, all packages sharing a namespace should coordinate and simultaneously drop `__init__.py` files to conform with PEP 420.
