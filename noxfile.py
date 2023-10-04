@@ -19,7 +19,7 @@ HERE = os.path.abspath(os.path.dirname(__file__))
 
 # -- REQUIRES: nox >= 2018.10.17
 # SEE: https://nox.readthedocs.io/en/stable/index.html
-USE_PYTHON_VERSIONS_DEFAULT = ["2.7", "3.7"]
+USE_PYTHON_VERSIONS_DEFAULT = ["3.8", "3.10", "3.12"]
 USE_PYTHON_VERSIONS = os.environ.get("NOXFILE_PYTHON_VERSIONS", "").split()
 if not USE_PYTHON_VERSIONS:
     USE_PYTHON_VERSIONS = USE_PYTHON_VERSIONS_DEFAULT
