@@ -61,5 +61,5 @@ cd pkgutil/pkg_a
 pip install .
 
 # Test the install by printing the `name` from the `__init__.py` file.
-python -c "import example_pkg.a as a; print a.name"
+python -c "import example_pkg.a as a; print(a.name)"
 ```
