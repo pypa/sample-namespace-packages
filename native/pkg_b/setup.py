@@ -27,7 +27,8 @@ setup(
     author_email='jonwayne@google.com',
 
     license='Apache Software License',
-
-    packages=['example_pkg.b'],
+    # This example uses automatic discovery. You can also implement custom discovery like this:
+    # packages=find_namespace_packages(where='src', include=['example_pkg.b']),
+    # package_dir={'': 'src'},
     zip_safe=False,
 )
