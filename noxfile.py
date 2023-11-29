@@ -25,8 +25,10 @@ if not USE_PYTHON_VERSIONS:
     USE_PYTHON_VERSIONS = USE_PYTHON_VERSIONS_DEFAULT
 
 
-install_commands = (("pip", "install", "."), ("pip", "install", "-e", "."))
-
+install_commands = (
+    ('pip', 'install', '.'),
+    ('pip', 'install', '-e', '.')
+)
 
 def install_packages(session, package_a, package_b, command_a, command_b):
     env = {**os.environ, "PIP_CONSTRAINT": f"{HERE}/constraints.txt"}
