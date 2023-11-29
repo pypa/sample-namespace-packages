@@ -17,8 +17,8 @@ import nox
 
 HERE = os.path.abspath(os.path.dirname(__file__))
 
-# -- REQUIRES: nox >= 2018.10.17
-# SEE: https://nox.readthedocs.io/en/stable/index.html
+# -- REQUIRES: nox >= 2023.04.22
+# SEE: https://nox.thea.codes/en/stable/index.html
 USE_PYTHON_VERSIONS_DEFAULT = ["3.8", "3.10", "3.12"]
 USE_PYTHON_VERSIONS = os.environ.get("NOXFILE_PYTHON_VERSIONS", "").split()
 if not USE_PYTHON_VERSIONS:
@@ -27,9 +27,8 @@ if not USE_PYTHON_VERSIONS:
 
 install_commands = (
     ('pip', 'install', '.'),
-    ('pip', 'install', '-e', '.'),
-    ('python', 'setup.py', 'install'),
-    ('python', 'setup.py', 'develop'))
+    ('pip', 'install', '-e', '.')
+)
 
 
 def install_packages(session, package_a, package_b, command_a, command_b):

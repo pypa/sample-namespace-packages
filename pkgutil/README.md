@@ -28,7 +28,7 @@ The directories `pkg_a` and `pkg_b` in this subdirectory contain two different p
 The names of these directories have no effect on the installed package.
 
 Each of these directories should at least contain:
-1.  `setup.py`.
+1.  A configuration file, in this case `setup.py`.
 2.  A directory, whose name determines the namespace name.
 
 In this example `example_pkg` is the name of the namespace. This directory should contain:
@@ -58,8 +58,8 @@ From the root directory, running the following command will install a package ca
 ```bash
 cd pkgutil/pkg_a
 
-pip install .
+python -m pip install .
 
 # Test the install by printing the `name` from the `__init__.py` file.
-python -c "import example_pkg.a as a; print a.name"
+python -c "import example_pkg.a as a; print(a.name)"
 ```

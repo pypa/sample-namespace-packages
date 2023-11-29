@@ -1,5 +1,10 @@
 name: nox
 on: [push, pull_request]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.sha }}
+  cancel-in-progress: true
+
 jobs:
   nox:
     strategy:
@@ -15,8 +20,7 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
       - run: python3 --version && python --version
-      - run: pip install --upgrade pip setuptools
-      - run: pip install nox pytest virtualenv
+      - run: pip install -r requirements.txt pytest
       - run: pytest . || true  # See pytest's warnings
       - run: nox --python ${{ matrix.python }}
       # - run: nox --python ${{ matrix.python }} --report report.json && python report_to_table.py
