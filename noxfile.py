@@ -17,84 +17,75 @@ import nox
 
 HERE = os.path.abspath(os.path.dirname(__file__))
 
-# -- REQUIRES: nox >= 2018.10.17
-# SEE: https://nox.readthedocs.io/en/stable/index.html
+# -- REQUIRES: nox >= 2023.04.22
+# SEE: https://nox.thea.codes/en/stable/index.html
 USE_PYTHON_VERSIONS_DEFAULT = ["3.8", "3.10", "3.12"]
 USE_PYTHON_VERSIONS = os.environ.get("NOXFILE_PYTHON_VERSIONS", "").split()
 if not USE_PYTHON_VERSIONS:
     USE_PYTHON_VERSIONS = USE_PYTHON_VERSIONS_DEFAULT
 
 
-install_commands = (
-    ('pip', 'install', '.'),
-    ('pip', 'install', '-e', '.'),
-    ('python', 'setup.py', 'install'),
-    ('python', 'setup.py', 'develop'))
+install_commands = (("pip", "install", "."), ("pip", "install", "-e", "."))
 
 
 def install_packages(session, package_a, package_b, command_a, command_b):
+    session.install(
+        "--upgrade",
+        "setuptools",
+        "pip",
+        "wheel",
+        env={"PIP_CONSTRAINT": f"{HERE}/constraints.txt"},
+    )
     session.chdir(package_a)
-    session.run('rm', '-rf', 'dist', 'build', '*.egg-info')
+    session.run("rm", "-rf", "dist", "build", "*.egg-info")
     session.run(*command_a)
     session.chdir(HERE)
     session.chdir(package_b)
-    session.run('rm', '-rf', 'dist', 'build', '*.egg-info')
+    session.run("rm", "-rf", "dist", "build", "*.egg-info")
     session.run(*command_b)
     session.chdir(HERE)
 
 
 @nox.session(python=USE_PYTHON_VERSIONS)
-@nox.parametrize('command_a', install_commands)
-@nox.parametrize('command_b', install_commands)
+@nox.parametrize("command_a", install_commands)
+@nox.parametrize("command_b", install_commands)
 def session_pkgutil(session, command_a, command_b):
-    session.install('--upgrade', 'setuptools', 'pip')
-    install_packages(
-        session, 'pkgutil/pkg_a', 'pkgutil/pkg_b',
-        command_a, command_b)
-    session.run('python', 'verify_packages.py')
+    install_packages(session, "pkgutil/pkg_a", "pkgutil/pkg_b", command_a, command_b)
+    session.run("python", "verify_packages.py")
 
 
 @nox.session(python=USE_PYTHON_VERSIONS)
-@nox.parametrize('command_a', install_commands)
-@nox.parametrize('command_b', install_commands)
+@nox.parametrize("command_a", install_commands)
+@nox.parametrize("command_b", install_commands)
 def session_pkg_resources(session, command_a, command_b):
-    session.install('--upgrade', 'setuptools', 'pip')
     install_packages(
-        session, 'pkg_resources/pkg_a', 'pkg_resources/pkg_b',
-        command_a, command_b)
-    session.run('python', 'verify_packages.py')
+        session, "pkg_resources/pkg_a", "pkg_resources/pkg_b", command_a, command_b
+    )
+    session.run("python", "verify_packages.py")
 
 
 @nox.session(python=USE_PYTHON_VERSIONS)
-@nox.parametrize('command_a', install_commands)
-@nox.parametrize('command_b', install_commands)
+@nox.parametrize("command_a", install_commands)
+@nox.parametrize("command_b", install_commands)
 def session_pep420(session, command_a, command_b):
-    session.install('--upgrade', 'setuptools', 'pip')
-    install_packages(
-        session, 'native/pkg_a', 'native/pkg_b',
-        command_a, command_b)
-    session.run('python', 'verify_packages.py')
+    install_packages(session, "native/pkg_a", "native/pkg_b", command_a, command_b)
+    session.run("python", "verify_packages.py")
 
 
 @nox.session(python=USE_PYTHON_VERSIONS)
-@nox.parametrize('command_a', install_commands)
-@nox.parametrize('command_b', install_commands)
-def session_cross_pkg_resources_pkgutil(
-        session, command_a, command_b):
-    session.install('--upgrade', 'setuptools', 'pip')
+@nox.parametrize("command_a", install_commands)
+@nox.parametrize("command_b", install_commands)
+def session_cross_pkg_resources_pkgutil(session, command_a, command_b):
     install_packages(
-        session, 'pkg_resources/pkg_a', 'pkgutil/pkg_b',
-        command_a, command_b)
-    session.run('python', 'verify_packages.py')
+        session, "pkg_resources/pkg_a", "pkgutil/pkg_b", command_a, command_b
+    )
+    session.run("python", "-m", "pip", "list")
+    session.run("python", "verify_packages.py")
 
 
 @nox.session(python=USE_PYTHON_VERSIONS)
-@nox.parametrize('command_a', install_commands)
-@nox.parametrize('command_b', install_commands)
-def session_cross_pep420_pkgutil(
-        session, command_a, command_b):
-    session.install('--upgrade', 'setuptools', 'pip')
-    install_packages(
-        session, 'native/pkg_a', 'pkgutil/pkg_b',
-        command_a, command_b)
-    session.run('python', 'verify_packages.py')
+@nox.parametrize("command_a", install_commands)
+@nox.parametrize("command_b", install_commands)
+def session_cross_pep420_pkgutil(session, command_a, command_b):
+    install_packages(session, "native/pkg_a", "pkgutil/pkg_b", command_a, command_b)
+    session.run("python", "verify_packages.py")
