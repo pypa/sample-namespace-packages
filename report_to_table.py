@@ -15,7 +15,8 @@ with io.open('table.md', 'w') as f:
         session_name = session['name']
         session_detailled_name = session['signatures'][-1]
         session_interpreter = session_detailled_name.replace(session_name + "-", "python")
-        session_name = session_name.replace("session_", "")
+        # TODO: Replace with `str.removeprefix()` in Python 3.12
+        session_name = session_name[len("session_") :]
 
         f.write('| {} | {} | {} | {} | {} |\n'.format(
             session_name,

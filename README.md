@@ -26,11 +26,11 @@ markdown-friendly table.
 To see the status since the last time the scenarios were run open [table.md](table.md)[^1].
 
 Please note:
-* Mixing package types within a single namespace is not supported. While it may work in some cases, it may also break depending on the software versions used, the install commands issued, or the order of commands. It is generally advisable to not mix types.
+* Mixing package types within a single namespace is not supported. While it may work in some cases, it may also break depending on the software versions used, the install commands issued, or the order of commands. It is generally advisable not to mix types.
 * The `pkg_resources` method of namspacing is [deprecated](https://setuptools.pypa.io/en/latest/pkg_resources.html).
   Whenever possible, developers are encouraged to migrate away from it.
 * [PEP 420](https://www.python.org/dev/peps/pep-0420/) was accepted as part of Python 3.3. For wider compatibility (going back to Python 2.3), use the `pkgutil` method.
-* Zipped eggs don't play nicely with namespace packaging, and may be implicitly installed by commands like `python setup.py install`. To prevent this, it is recommended that you set [`zip_safe=False`](http://setuptools.readthedocs.io/en/latest/setuptools.html#setting-the-zip-safe-flag) in `setup.py`, as we do here. Please also note that distributing packages via egg files is also considered deprecated.
+* Zipped eggs don't play nicely with namespace packaging, and may be implicitly installed by commands like `python setup.py install`. To prevent this, it is recommended that you set [`zip_safe=False`](http://setuptools.readthedocs.io/en/latest/setuptools.html#setting-the-zip-safe-flag) in `setup.py`, as we do here. Please also note that distributing packages via egg files is considered deprecated.
 * The tests reported in [table.md](table.md) use `pip` with *build isolation* and build-backend APIs.
   This is triggered by the presence of a `pyproject.toml` file in each package source directory.
   If your package does not have a `pyproject.toml` file,
@@ -57,4 +57,4 @@ specific use cases they are interested in supporting.
 
 
 [^1]: If you would like to know about deprecated installation methods (e.g. via
-  `python setup.py install`) or Python 2.7, please have a look on [legacy_table.md](legacy_table.md).
+  `python setup.py install`) or Python 2.7, please have a look at [legacy_table.md](legacy_table.md).
