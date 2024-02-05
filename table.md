@@ -73,14 +73,14 @@
 | cross_pep420_pkg_resources | python3.12 | pip install -e . | pip install . | ✅ |
 | cross_pep420_pkg_resources | python3.12 | pip install -e . | pip install -e . | ✅ |
 | cross_pkg_resources_pep420 | python3.8 | pip install . | pip install . | ✅ |
-| cross_pkg_resources_pep420 | python3.8 | pip install . | pip install -e . | ❌ |
-| cross_pkg_resources_pep420 | python3.8 | pip install -e . | pip install . | ✅ |
+| cross_pkg_resources_pep420 | python3.8 | pip install . | pip install -e . | ✅ |
+| cross_pkg_resources_pep420 | python3.8 | pip install -e . | pip install . | ❌ |
 | cross_pkg_resources_pep420 | python3.8 | pip install -e . | pip install -e . | ✅ |
 | cross_pkg_resources_pep420 | python3.10 | pip install . | pip install . | ✅ |
-| cross_pkg_resources_pep420 | python3.10 | pip install . | pip install -e . | ❌ |
-| cross_pkg_resources_pep420 | python3.10 | pip install -e . | pip install . | ✅ |
+| cross_pkg_resources_pep420 | python3.10 | pip install . | pip install -e . | ✅ |
+| cross_pkg_resources_pep420 | python3.10 | pip install -e . | pip install . | ❌ |
 | cross_pkg_resources_pep420 | python3.10 | pip install -e . | pip install -e . | ✅ |
 | cross_pkg_resources_pep420 | python3.12 | pip install . | pip install . | ✅ |
-| cross_pkg_resources_pep420 | python3.12 | pip install . | pip install -e . | ❌ |
-| cross_pkg_resources_pep420 | python3.12 | pip install -e . | pip install . | ✅ |
+| cross_pkg_resources_pep420 | python3.12 | pip install . | pip install -e . | ✅ |
+| cross_pkg_resources_pep420 | python3.12 | pip install -e . | pip install . | ❌ |
 | cross_pkg_resources_pep420 | python3.12 | pip install -e . | pip install -e . | ✅ |
