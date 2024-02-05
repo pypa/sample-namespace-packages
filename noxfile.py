@@ -29,20 +29,15 @@ install_commands = (("pip", "install", "."), ("pip", "install", "-e", "."))
 
 
 def install_packages(session, package_a, package_b, command_a, command_b):
-    session.install(
-        "--upgrade",
-        "setuptools",
-        "pip",
-        "wheel",
-        env={"PIP_CONSTRAINT": f"{HERE}/constraints.txt"},
-    )
+    env = {**os.environ, "PIP_CONSTRAINT": f"{HERE}/constraints.txt"}
+    session.install("--upgrade", "pip", env=env)
     session.chdir(package_a)
     session.run("rm", "-rf", "dist", "build", "*.egg-info")
-    session.run(*command_a)
+    session.run(*command_a, env=env)
     session.chdir(HERE)
     session.chdir(package_b)
     session.run("rm", "-rf", "dist", "build", "*.egg-info")
-    session.run(*command_b)
+    session.run(*command_b, env=env)
     session.chdir(HERE)
 
 
@@ -88,4 +83,24 @@ def session_cross_pkg_resources_pkgutil(session, command_a, command_b):
 @nox.parametrize("command_b", install_commands)
 def session_cross_pep420_pkgutil(session, command_a, command_b):
     install_packages(session, "native/pkg_a", "pkgutil/pkg_b", command_a, command_b)
+    session.run("python", "verify_packages.py")
+
+
+@nox.session(python=USE_PYTHON_VERSIONS)
+@nox.parametrize('command_a', install_commands)
+@nox.parametrize('command_b', install_commands)
+def session_cross_pep420_pkg_resources(session, command_a, command_b):
+    install_packages(
+        session, 'native/pkg_a', 'pkg_resources/pkg_b', command_a, command_b
+    )
+    session.run("python", "verify_packages.py")
+
+
+@nox.session(python=USE_PYTHON_VERSIONS)
+@nox.parametrize('command_a', install_commands)
+@nox.parametrize('command_b', install_commands)
+def session_cross_pkg_resources_pep420(session, command_a, command_b):
+    install_packages(
+        session, 'pkg_resources/pkg_a', 'native/pkg_b', command_a, command_b
+    )
     session.run("python", "verify_packages.py")
