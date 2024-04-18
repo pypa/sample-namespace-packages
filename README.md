@@ -44,8 +44,8 @@ However, developers might be interested in carrying out a *staggered migration* 
 to mitigate the migration effort and spread the work load in time.
 
 Based on the results for the scenarios mixing `pkg_resources` and other namespace methods reported in
-[table.md](table.md) and [legacy_table.md](legacy_table.md),
-we can see that (in principle) a staggered migration plan can be successful,
+[table.md](table.md) and [legacy_table.md](https://github.com/pypa/sample-namespace-packages/blob/master/legacy_table.md)
+(only available for flat layout), we can see that (in principle) a staggered migration plan can be successful,
 as long as the developers are willing to accept some limitations:
 
 - Deprecated installation methods will not be supported (e.g. `python setup.py install`),
@@ -57,4 +57,4 @@ specific use cases they are interested in supporting.
 
 
 [^1]: If you would like to know about deprecated installation methods (e.g. via
-  `python setup.py install`) or Python 2.7, please have a look at [legacy_table.md](legacy_table.md).
+  `python setup.py install`) or Python 2.7 for the flat layout, please have a look at [legacy_table.md](https://github.com/pypa/sample-namespace-packages/blob/master/legacy_table.md).
