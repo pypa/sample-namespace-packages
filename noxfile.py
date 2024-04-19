@@ -25,18 +25,20 @@ if not USE_PYTHON_VERSIONS:
     USE_PYTHON_VERSIONS = USE_PYTHON_VERSIONS_DEFAULT
 
 
-install_commands = (("pip", "install", "."), ("pip", "install", "-e", "."))
-
+install_commands = (
+    ('pip', 'install', '.'),
+    ('pip', 'install', '-e', '.')
+)
 
 def install_packages(session, package_a, package_b, command_a, command_b):
     env = {**os.environ, "PIP_CONSTRAINT": f"{HERE}/constraints.txt"}
     session.install("--upgrade", "pip", env=env)
     session.chdir(package_a)
-    session.run("rm", "-rf", "dist", "build", "*.egg-info")
+    session.run("rm", "-rf", "dist", "build", "*.egg-info", external=True)
     session.run(*command_a, env=env)
     session.chdir(HERE)
     session.chdir(package_b)
-    session.run("rm", "-rf", "dist", "build", "*.egg-info")
+    session.run("rm", "-rf", "dist", "build", "*.egg-info", external=True)
     session.run(*command_b, env=env)
     session.chdir(HERE)
 

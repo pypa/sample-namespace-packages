@@ -1,0 +1,3 @@
+**/**/setup.py merge=ours
+**/**/pyproject.toml merge=ours
+table.md merge=ours

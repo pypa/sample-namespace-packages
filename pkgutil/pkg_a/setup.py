@@ -28,6 +28,7 @@ setup(
 
     license='Apache Software License',
 
-    packages=find_packages(),
+    packages=find_packages(where='src'),
+    package_dir={'': 'src'},
     zip_safe=False,
 )
