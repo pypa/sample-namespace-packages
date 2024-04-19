@@ -1,0 +1,52 @@
+name: CI
+on:
+  push:
+    branches: ["master", "src-layout"]
+  pull_request:
+    branches: ["master", "src-layout"]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.sha }}
+  cancel-in-progress: true
+
+jobs:
+  generate-compatibility-matrix:
+    name: >-
+      Check for any uncommitted
+      table alteration
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Determine Python versions
+      run: |
+        {
+          echo 'PYTHON_VERSIONS<<EOF'
+          cat  '.python-versions-used'
+          echo 'EOF'
+        } >> $GITHUB_ENV
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{env.PYTHON_VERSIONS}}
+    - name: Install dependencies
+      run: |
+        python -m pip install -r requirements.txt
+    - name: Generate compatibility matrix with nox
+      continue-on-error: true
+      run: |
+        python -m nox --report report.json
+        cat report.json
+        python report_to_table.py
+    - name: Verify table has not been altered
+      run: |
+        DIFF_FOR_TABLE=$(git diff table.md)
+        echo "::set-output name=DIFF_FOR_TABLE::$DIFF_FOR_TABLE"
+      id: verify-table
+    - name: Fail the job
+      if: ${{ steps.verify-table.outputs.DIFF_FOR_TABLE != '' }}
+      run: |
+        echo "::error file=table.md::Table has been altered but not committed!"
+        exit 1
