@@ -4,6 +4,8 @@ on:
     branches: ["master", "src-layout"]
   pull_request:
     branches: ["master", "src-layout"]
+  schedule:
+    - cron: "0 12 1 * *"
 
 permissions:
   contents: read
@@ -43,7 +45,7 @@ jobs:
     - name: Verify table has not been altered
       run: |
         DIFF_FOR_TABLE=$(git diff table.md)
-        echo "::set-output name=DIFF_FOR_TABLE::$DIFF_FOR_TABLE"
+        echo "DIFF_FOR_TABLE=$DIFF_FOR_TABLE" >> $GITHUB_OUTPUT
       id: verify-table
     - name: Fail the job
       if: ${{ steps.verify-table.outputs.DIFF_FOR_TABLE != '' }}
