@@ -40,10 +40,11 @@ jobs:
       continue-on-error: true
       run: |
         python -m nox --report report.json
-        cat report.json
-        python report_to_table.py
     - name: Verify table has not been altered
       run: |
+        cat report.json
+        python report_to_table.py
+        git diff table.md
         DIFF_FOR_TABLE=$(git diff table.md)
         echo "DIFF_FOR_TABLE=$DIFF_FOR_TABLE" >> $GITHUB_OUTPUT
       id: verify-table
