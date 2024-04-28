@@ -4,6 +4,8 @@ on:
     branches: ["master", "src-layout"]
   pull_request:
     branches: ["master", "src-layout"]
+  schedule:
+    - cron: "0 12 1 * *"
 
 permissions:
   contents: read
@@ -35,11 +37,19 @@ jobs:
       run: |
         python -m pip install -r requirements.txt
     - name: Generate compatibility matrix with nox
+      continue-on-error: true
       run: |
         python -m nox --report report.json
-        cat report.json
-        python report_to_table.py
     - name: Verify table has not been altered
       run: |
-        git diff
-        git log
+        cat report.json
+        python report_to_table.py
+        git diff table.md
+        DIFF_FOR_TABLE=$(git diff table.md)
+        echo "DIFF_FOR_TABLE=$DIFF_FOR_TABLE" >> $GITHUB_OUTPUT
+      id: verify-table
+    - name: Fail the job
+      if: ${{ steps.verify-table.outputs.DIFF_FOR_TABLE != '' }}
+      run: |
+        echo "::error file=table.md::Table has been altered but not committed!"
+        exit 1
