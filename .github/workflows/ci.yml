@@ -46,8 +46,11 @@ jobs:
         cat report.json
         python report_to_table.py
         git diff table.md
-        DIFF_FOR_TABLE=$(git diff table.md)
-        echo "DIFF_FOR_TABLE=$DIFF_FOR_TABLE" >> $GITHUB_OUTPUT
+        {
+          echo 'DIFF_FOR_TABLE<<EOF'
+          git diff table.md
+          echo 'EOF'
+        } >> $GITHUB_OUTPUT
       id: verify-table
     - name: Fail the job if the committed table differs from the calculated one
       if: steps.verify-table.outputs.DIFF_FOR_TABLE != ''
