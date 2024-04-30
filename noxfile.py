@@ -19,10 +19,10 @@ HERE = os.path.abspath(os.path.dirname(__file__))
 
 # -- REQUIRES: nox >= 2023.04.22
 # SEE: https://nox.thea.codes/en/stable/index.html
-USE_PYTHON_VERSIONS_DEFAULT = ["3.8", "3.10", "3.12"]
 USE_PYTHON_VERSIONS = os.environ.get("NOXFILE_PYTHON_VERSIONS", "").split()
 if not USE_PYTHON_VERSIONS:
-    USE_PYTHON_VERSIONS = USE_PYTHON_VERSIONS_DEFAULT
+    with open(os.path.join(HERE, ".python-versions-used"), "r") as file:
+        USE_PYTHON_VERSIONS = [x.strip() for x in file]
 
 
 install_commands = (("pip", "install", "."), ("pip", "install", "-e", "."))
